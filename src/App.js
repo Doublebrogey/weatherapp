@@ -2,15 +2,13 @@ import React from "react";
 // import axios from "./api/axios";
 import SearchBar from "./Components/SearchBar";
 import Location from "./Components/Location";
-import axios from "axios";
+import apiWeatherService from './api/axios'
 
 class App extends React.Component {
   state = { city: [], temps: "", name: "" };
 
-  onSearchSubmit = async (city) => {
-    const response = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?&q=${city},us&units=imperial&appid=6438489c427c6bd2d8b2e3734db21ca1`
-    );
+  onSearchSubmit = async (query) => {
+    const response = await apiWeatherService.getWeather(query)
 
     this.setState({
       city: response.data.weather,

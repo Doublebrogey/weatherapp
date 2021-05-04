@@ -17,6 +17,29 @@ import React from "react";
 //   }
 // };
 
+
+const getIcon = (description) => {
+  console.log(description)
+  let icon = ''
+  switch (description) {
+    case 'broken clouds':
+      icon = 'massive cloud icon'
+      break;
+    case 'few clouds':
+      icon = 'massive sun icon'
+      break;
+    case 'clear sky':
+      icon = 'massive skyatlas icon'
+      break;
+    default:
+      icon = 'massive snowflake icon'
+  }
+  return (
+    <i className={icon} />
+
+  )
+}
+
 const Location = (props) => {
   const city = props.city.map(({ description, id }) => {
     return (
@@ -30,11 +53,7 @@ const Location = (props) => {
         <h3>Current Temp (Fahrenheit): {Math.floor(props.temps)}</h3>
         <h3>Feels Like (Fahrenheit): {Math.floor(props.feelsLike)}</h3>
         <div>
-          {props.temps >= 70 ? (
-            <i className={"massive sun icon"} />
-          ) : (
-            <i className={" massive snowflake icon"} />
-          )}
+          {getIcon(description)}
         </div>
       </div>
     );
